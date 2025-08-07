@@ -1,0 +1,78 @@
+# Archivo .gitignore para proyectos .NET en Visual Studio
+
+# #######################
+# # Visual Studio & Code
+# #######################
+
+# Carpeta de configuraciones específicas del usuario de Visual Studio (incluye breakpoints, archivos abiertos, etc.)
+# ESTA ES LA REGLA QUE SOLICITASTE
+.vs/
+
+# Otros archivos de configuración de usuario y temporales
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Configuración de VS Code
+.vscode/
+
+# #######################
+# # Salida de Compilación
+# #######################
+
+# Carpetas de salida de compilación. Se generan cada vez que compilas.
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+
+# #######################
+# # Dependencias
+# #######################
+
+# Paquetes de NuGet. Es mejor restaurarlos con 'dotnet restore' que guardarlos en el repositorio.
+packages/
+*.nupkg
+
+# #######################
+# # Secretos y Configuración
+# #######################
+
+# NUNCA guardes secretos o configuraciones de entorno de desarrollo en Git.
+appsettings.Development.json
+secrets.json
+*.secrets.json
+
+# #######################
+# # Archivos de Usuario y Otros
+# #######################
+
+# Archivos de registro (logs)
+*.log
+*.log.*
+logs/
+
+# Resultados de pruebas
+TestResults/
+*.trx
+
+# Archivos de Resharper
+_ReSharper*/
+*.[Rr]esharper
+*.DotSettings.user
+
+# #######################
+# # Archivos del Sistema Operativo
+# #######################
+
+# Archivos de caché de imágenes de Windows
+Thumbs.db
+ehthumbs.db
+
+# Archivos de metadatos de macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Archivo de caché de directorio de Windows
+Desktop.ini
