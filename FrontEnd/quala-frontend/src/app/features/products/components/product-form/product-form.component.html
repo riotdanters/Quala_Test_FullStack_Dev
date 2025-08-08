@@ -1,0 +1,87 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="isEditMode ? 'Editar Producto' : 'Nuevo Producto'"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="submitForm()"
+  [nzFooter]="modalFooter" 
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="productForm" nzLayout="vertical">
+      <nz-form-item>
+        <nz-form-label nzRequired>Código Producto</nz-form-label>
+        <nz-form-control nzErrorTip="¡El código es requerido!">
+          <nz-input-number formControlName="codigoProducto" [nzMin]="1" [nzStep]="1" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-label nzRequired>Nombre</nz-form-label>
+        <nz-form-control nzErrorTip="¡El nombre es requerido!">
+          <input nz-input formControlName="nombre" placeholder="Nombre del producto" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Descripción</nz-form-label>
+        <nz-form-control nzErrorTip="¡La descripción es requerida!">
+          <textarea nz-input formControlName="descripcion" rows="3"></textarea>
+        </nz-form-control>
+      </nz-form-item>
+
+      <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Referencia Interna</nz-form-label>
+            <nz-form-control nzErrorTip="¡La referencia es requerida!">
+              <input nz-input formControlName="referenciaInterna" />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Precio Unitario</nz-form-label>
+            <nz-form-control nzErrorTip="¡El precio debe ser positivo!">
+              <nz-input-number formControlName="precioUnitario" [nzMin]="0.01" [nzStep]="0.01" style="width: 100%;"></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      
+      <div nz-row [nzGutter]="8">
+        <div nz-col [nzSpan]="12">
+          <nz-form-item>
+            <nz-form-label nzRequired>Estado</nz-form-label>
+            <nz-form-control>
+              <nz-select formControlName="estado">
+                <nz-option [nzValue]="true" nzLabel="Activo"></nz-option>
+                <nz-option [nzValue]="false" nzLabel="Inactivo"></nz-option>
+              </nz-select>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="12">
+            <nz-form-item>
+              <nz-form-label nzRequired>Unidad de Medida</nz-form-label>
+              <nz-form-control nzErrorTip="¡La unidad de medida es requerida!">
+                <input nz-input formControlName="unidadMedida" />
+              </nz-form-control>
+            </nz-form-item>
+        </div>
+      </div>
+
+      <nz-form-item>
+        <nz-form-label nzRequired>Fecha de Creación</nz-form-label>
+        <nz-form-control nzErrorTip="La fecha no puede ser anterior a hoy.">
+          <nz-date-picker formControlName="fechaCreacion" style="width: 100%;"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </ng-container>
+
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+    <button nz-button nzType="primary" (click)="submitForm()" [nzLoading]="isLoading">
+      {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+    </button>
+  </ng-template>
+</nz-modal>

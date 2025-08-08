@@ -1,0 +1,24 @@
+.app-layout {
+  min-height: 100vh;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  color: white;
+  margin: 0;
+}
+
+.app-content {
+  padding: 24px;
+}
+
+.inner-content {
+  background: #fff;
+  padding: 24px;
+  min-height: 360px;
+}

@@ -1,0 +1,59 @@
+<nz-layout class="app-layout">
+  <nz-header>
+    <div class="app-header">
+      <h2 class="header-title">Gestión de Productos - QUALA</h2>
+      <button nz-button nzType="default" (click)="logout()">
+        <span nz-icon nzType="logout"></span>
+        Cerrar Sesión
+      </button>
+    </div>
+  </nz-header>
+  <nz-content class="app-content">
+    <div class="inner-content">
+      <div style="margin-bottom: 16px;">
+        <button nz-button nzType="primary" (click)="openNewModal()">
+          <span nz-icon nzType="plus"></span>
+          Nuevo Producto
+        </button>
+      </div>
+
+      <nz-table #productTable [nzData]="products" [nzLoading]="isLoading">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio Unitario</th>
+            <th>Estado</th>
+            <th>Fecha Creación</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of productTable.data">
+            <td>{{ data.codigoProducto }}</td>
+            <td>{{ data.nombre }}</td>
+            <td>{{ data.precioUnitario | currency:'USD' }}</td>
+            <td>
+              <nz-tag [nzColor]="data.estado ? 'green' : 'red'">
+                {{ data.estado ? 'Activo' : 'Inactivo' }}
+              </nz-tag>
+            </td>
+            <td>{{ data.fechaCreacion | date:'dd/MM/yyyy' }}</td>
+            <td>
+              <a (click)="openEditModal(data)">Editar</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a nz-popconfirm nzPopconfirmTitle="¿Estás seguro de eliminar este producto?" (nzOnConfirm)="deleteProduct(data.codigoProducto)">Eliminar</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </nz-content>
+</nz-layout>
+
+<app-product-form
+  [isVisible]="isModalVisible"
+  [productData]="selectedProduct"
+  (formSaved)="handleModalSave()"
+  (formClosed)="handleModalClose()">
+</app-product-form>

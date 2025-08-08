@@ -1,0 +1,23 @@
+<div class="login-container">
+  <nz-card class="login-card" nzTitle="Bienvenido a QUALA">
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="¡Por favor, ingresa tu usuario!">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input formControlName="username" placeholder="Usuario (quala)" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="¡Por favor, ingresa tu contraseña!">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password" placeholder="Contraseña (admin)" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button nzType="primary" [nzLoading]="isLoading" [disabled]="loginForm.invalid" nzBlock>
+        Ingresar
+      </button>
+    </form>
+  </nz-card>
+</div>
